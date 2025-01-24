@@ -13,13 +13,13 @@
 ### Install using npm
 
 ```bash
-npm i @la55u/react-spring-bottom-sheet-updated
+npm i @hovevideo/react-spring-bottom-sheet-updated
 ```
 
 ### Install using yarn
 
 ```bash
-yarn add @la55u/react-spring-bottom-sheet-updated
+yarn add @hovevideo/react-spring-bottom-sheet-updated
 ```
 
 # Getting started
@@ -28,9 +28,9 @@ yarn add @la55u/react-spring-bottom-sheet-updated
 
 ```jsx
 import { useState } from 'react'
-import { BottomSheet } from '@la55u/react-spring-bottom-sheet-updated'
+import { BottomSheet } from '@hovevideo/react-spring-bottom-sheet-updated'
 
-import '@la55u/react-spring-bottom-sheet-updated/dist/style.css'
+import '@hovevideo/react-spring-bottom-sheet-updated/dist/style.css'
 
 export default function Example() {
   const [open, setOpen] = useState(false)
@@ -52,7 +52,7 @@ import { useRef } from 'react'
 import {
   BottomSheet,
   BottomSheetRef,
-} from '@la55u/react-spring-bottom-sheet-updated'
+} from '@hovevideo/react-spring-bottom-sheet-updated'
 
 export default function Example() {
   const sheetRef = useRef<BottomSheetRef>()
@@ -99,7 +99,7 @@ module.exports = {
     // Ensures the default variables are available
     'postcss-custom-properties-fallback': {
       importFrom: require.resolve(
-        '@la55u/react-spring-bottom-sheet-updated/defaults.json'
+        '@hovevideo/react-spring-bottom-sheet-updated/defaults.json'
       ),
     },
   },

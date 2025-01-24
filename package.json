@@ -1,12 +1,12 @@
 {
-  "name": "@la55u/react-spring-bottom-sheet-updated",
+  "name": "@hovevideo/react-spring-bottom-sheet-updated",
   "description": "✨ Accessible, 🪄 Delightful, and 🤯 Performant. Built on react-spring for the web, and react-use-gesture.",
   "license": "MIT",
   "author": "Cody Olsen",
   "homepage": "https://react-spring-bottom-sheet.cocody.dev",
-  "repository": "https://github.com/la55u/react-spring-bottom-sheet-updated",
+  "repository": "https://github.com/hovevideo/react-spring-bottom-sheet-updated",
   "bugs": {
-    "url": "https://github.com/la55u/react-spring-bottom-sheet-updated/issues"
+    "url": "https://github.com/hovevideo/react-spring-bottom-sheet-updated/issues"
   },
   "version": "1.0.3",
   "main": "dist/index.js",
