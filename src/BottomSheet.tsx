@@ -237,6 +237,7 @@ export const BottomSheet = React.forwardRef<
           onSpringStartRef.current?.({
             type: 'SNAP',
             source: event.payload.source || 'custom',
+            event,
           }),
         []
       ),
