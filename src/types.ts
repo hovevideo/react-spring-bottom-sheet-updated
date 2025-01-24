@@ -42,7 +42,15 @@ export type SpringEvent =
   | { type: 'OPEN' }
   | { type: 'CLOSE' }
   | { type: 'RESIZE'; source: ResizeSource }
-  | { type: 'SNAP'; source: 'dragging' | 'custom' | string }
+  | {
+      type: 'SNAP'
+      source: 'dragging' | 'custom' | string
+      event?: {
+        source: 'dragging' | 'custom' | string
+        velocity: number
+        y: number
+      }
+    }
 
 export type Props = {
   /**
