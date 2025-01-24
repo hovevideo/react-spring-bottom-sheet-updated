@@ -46,9 +46,11 @@ export type SpringEvent =
       type: 'SNAP'
       source: 'dragging' | 'custom' | string
       event?: {
-        source: 'dragging' | 'custom' | string
-        velocity: number
-        y: number
+        payload: {
+          source: 'dragging' | 'custom' | string
+          velocity: number
+          y: number
+        }
       }
     }
 
