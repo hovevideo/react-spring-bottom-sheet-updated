@@ -190,17 +190,16 @@ function useElementSizeObserver(
 
   const handleResize = useCallback(
     (entries: ResizeObserverEntry[]) => {
+      if (!enabled) return
       // we only observe one element, so accessing the first entry here is fine
       setSize(entries[0].borderBoxSize[0].blockSize)
       resizeSourceRef.current = 'element'
     },
-    [resizeSourceRef]
+    [enabled, resizeSourceRef]
   )
 
   useLayoutEffect(() => {
-    if (!ref.current || !enabled) {
-      return
-    }
+    if (!ref.current) return
 
     const resizeObserver = new ResizeObserver(handleResize)
     resizeObserver.observe(ref.current, observerOptions)
@@ -208,9 +207,9 @@ function useElementSizeObserver(
     return () => {
       resizeObserver.disconnect()
     }
-  }, [ref, handleResize, enabled])
+  }, [ref, handleResize])
 
-  return enabled ? size : 0
+  return size
 }
 
 // Blazingly keep track of the current viewport height without blocking the thread, keeping that sweet 60fps on smartphones
@@ -226,7 +225,6 @@ function useMaxHeight(
       : 0
   )
   const ready = maxHeight > 0
-  const raf = useRef(0)
 
   useDebugValue(controlledMaxHeight ? 'controlled' : 'auto')
 
@@ -237,36 +235,31 @@ function useMaxHeight(
   }, [ready, setReady])
 
   useLayoutEffect(() => {
-    // Bail if the max height is a controlled prop
+    let raf = 0
+    const handleResize = () => {
+      if (controlledMaxHeight) return
+
+      if (raf) return
+      raf = requestAnimationFrame(() => {
+        setMaxHeight(window.innerHeight)
+        resizeSourceRef.current = 'window'
+        raf = 0
+      })
+    }
+
     if (controlledMaxHeight) {
       setMaxHeight(roundAndCheckForNaN(controlledMaxHeight))
       resizeSourceRef.current = 'maxheightprop'
-
-      return
+    } else {
+      window.addEventListener('resize', handleResize)
+      setMaxHeight(window.innerHeight)
+      resizeSourceRef.current = 'window'
+      setReady()
     }
-
-    const handleResize = () => {
-      if (raf.current) {
-        // bail to throttle the amount of resize changes
-        return
-      }
-
-      // throttle state changes using rAF
-      raf.current = requestAnimationFrame(() => {
-        setMaxHeight(window.innerHeight)
-        resizeSourceRef.current = 'window'
-
-        raf.current = 0
-      })
-    }
-    window.addEventListener('resize', handleResize)
-    setMaxHeight(window.innerHeight)
-    resizeSourceRef.current = 'window'
-    setReady()
 
     return () => {
       window.removeEventListener('resize', handleResize)
-      cancelAnimationFrame(raf.current)
+      cancelAnimationFrame(raf)
     }
   }, [controlledMaxHeight, setReady, resizeSourceRef])
 
