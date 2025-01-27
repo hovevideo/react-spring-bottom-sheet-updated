@@ -11,7 +11,13 @@
 # Installation
 
 ```bash
-npm i react-spring-bottom-sheet
+npm i @hovevideo/react-spring-bottom-sheet-updated
+```
+
+### Install using yarn
+
+```bash
+yarn add @hovevideo/react-spring-bottom-sheet-updated
 ```
 
 # Getting started
@@ -20,11 +26,9 @@ npm i react-spring-bottom-sheet
 
 ```jsx
 import { useState } from 'react'
-import { BottomSheet } from 'react-spring-bottom-sheet'
+import { BottomSheet } from '@hovevideo/react-spring-bottom-sheet-updated'
 
-// if setting up the CSS is tricky, you can add this to your page somewhere:
-// <link rel="stylesheet" href="https://unpkg.com/react-spring-bottom-sheet/dist/style.css" crossorigin="anonymous">
-import 'react-spring-bottom-sheet/dist/style.css'
+import '@hovevideo/react-spring-bottom-sheet-updated/dist/style.css'
 
 export default function Example() {
   const [open, setOpen] = useState(false)
@@ -43,7 +47,10 @@ TS support is baked in, and if you're using the `snapTo` API use `BottomSheetRef
 
 ```tsx
 import { useRef } from 'react'
-import { BottomSheet, BottomSheetRef } from 'react-spring-bottom-sheet'
+import {
+  BottomSheet,
+  BottomSheetRef,
+} from '@hovevideo/react-spring-bottom-sheet-updated'
 
 export default function Example() {
   const sheetRef = useRef<BottomSheetRef>()
@@ -89,7 +96,9 @@ module.exports = {
   plugins: {
     // Ensures the default variables are available
     'postcss-custom-properties-fallback': {
-      importFrom: require.resolve('react-spring-bottom-sheet/defaults.json'),
+      importFrom: require.resolve(
+        '@hovevideo/react-spring-bottom-sheet-updated/defaults.json'
+      ),
     },
   },
 }
