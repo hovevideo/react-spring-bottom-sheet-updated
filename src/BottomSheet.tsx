@@ -193,6 +193,7 @@ export const BottomSheet = React.forwardRef<
         (context) =>
           onSpringCancelRef.current?.({
             type: 'SNAP',
+            // @ts-expect-error
             source: context.snapSource,
           }),
         []
@@ -217,6 +218,7 @@ export const BottomSheet = React.forwardRef<
         (context, event) =>
           onSpringEndRef.current?.({
             type: 'SNAP',
+            // @ts-expect-error
             source: context.snapSource,
           }),
         []
