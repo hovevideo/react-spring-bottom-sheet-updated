@@ -661,6 +661,11 @@ export const BottomSheet = React.forwardRef<
     filterTaps: true,
   })
 
+  const headerBind = bind()
+  const scrollBind = bind({ isContentDragging: true })
+  const backdropBind = bind({ closeOnTap: true })
+  const footerBind = bind()
+
   const interpolations = useSpringInterpolations({ spring })
 
   if (Number.isNaN(maxSnapRef.current)) {
@@ -699,7 +704,7 @@ export const BottomSheet = React.forwardRef<
           // that clips this element to the container, not allowing it to cover the full page.
           key="backdrop"
           data-rsbs-backdrop
-          {...bind({ closeOnTap: true })}
+          {...backdropBind}
         />
       )}
       <div
@@ -718,7 +723,7 @@ export const BottomSheet = React.forwardRef<
         }}
       >
         {header !== false && (
-          <div key="header" data-rsbs-header ref={headerRef} {...bind()}>
+          <div key="header" data-rsbs-header ref={headerRef} {...headerBind}>
             {header}
           </div>
         )}
@@ -726,14 +731,14 @@ export const BottomSheet = React.forwardRef<
           key="scroll"
           data-rsbs-scroll
           ref={scrollRef}
-          {...(expandOnContentDrag ? bind({ isContentDragging: true }) : {})}
+          {...(expandOnContentDrag ? scrollBind : {})}
         >
           <div data-rsbs-content ref={contentRef}>
             {children}
           </div>
         </div>
         {footer && (
-          <div key="footer" ref={footerRef} data-rsbs-footer {...bind()}>
+          <div key="footer" ref={footerRef} data-rsbs-footer {...footerBind}>
             {footer}
           </div>
         )}
