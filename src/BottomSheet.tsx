@@ -661,14 +661,14 @@ export const BottomSheet = React.forwardRef<
     filterTaps: true,
   })
 
+  const interpolations = useSpringInterpolations({ spring })
+
   if (Number.isNaN(maxSnapRef.current)) {
     throw new TypeError('maxSnapRef is NaN!!')
   }
   if (Number.isNaN(minSnapRef.current)) {
     throw new TypeError('minSnapRef is NaN!!')
   }
-
-  const interpolations = useSpringInterpolations({ spring })
 
   return (
     <animated.div
